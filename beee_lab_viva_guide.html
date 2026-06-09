@@ -1,0 +1,281 @@
+
+<style>
+  .container { padding: 1rem 0; font-size: 14px; }
+  .exp-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); margin-bottom: 12px; overflow: hidden; }
+  .exp-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; cursor: pointer; }
+  .exp-header:hover { background: var(--color-background-secondary); }
+  .exp-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 13px; flex-shrink: 0; }
+  .exp-title { flex: 1; font-weight: 500; font-size: 14px; color: var(--color-text-primary); }
+  .exp-tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--color-background-secondary); color: var(--color-text-secondary); }
+  .chevron { font-size: 14px; color: var(--color-text-secondary); transition: transform 0.2s; }
+  .exp-body { display: none; padding: 0 16px 16px; border-top: 0.5px solid var(--color-border-tertiary); }
+  .exp-body.open { display: block; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin: 12px 0 6px; }
+  .qa { margin-bottom: 8px; }
+  .q { font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+  .a { color: var(--color-text-secondary); line-height: 1.6; }
+  .formula { font-family: var(--font-mono); font-size: 12px; background: var(--color-background-secondary); padding: 6px 10px; border-radius: 6px; margin: 6px 0; color: var(--color-text-primary); }
+  .tip { background: var(--color-background-info); border-left: 2px solid var(--color-border-info); padding: 8px 12px; border-radius: 0 6px 6px 0; margin: 8px 0; font-size: 13px; color: var(--color-text-info); }
+  .ask-btn { font-size: 12px; color: var(--color-text-info); cursor: pointer; background: none; border: 0.5px solid var(--color-border-info); border-radius: 6px; padding: 4px 10px; margin-top: 8px; }
+  .ask-btn:hover { background: var(--color-background-info); }
+</style>
+<div class="container">
+  <p style="color:var(--color-text-secondary);font-size:13px;margin:0 0 16px;">Click any experiment to see the theory, key concepts, and likely viva questions with answers.</p>
+
+  <!-- Exp 1 -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#E6F1FB;color:#0C447C;">1</div>
+      <span class="exp-title">Electronic components &amp; instruments</span>
+      <span class="exp-tag">Basics</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">Three types of components: <b>Active</b> (need power — diodes, transistors), <b>Passive</b> (no power needed — R, L, C), and <b>Electromechanical</b> (switches, relays). Instruments: Multimeter (measures V, I, R), Oscilloscope (shows waveform over time), Function Generator (produces signals), LCR meter (measures L, C, R precisely).</p>
+      <div class="section-label">Resistor colour code (4-band)</div>
+      <p class="a">Bands 1 &amp; 2 = digits, Band 3 = multiplier, Band 4 = tolerance (Gold = ±5%, Silver = ±10%).</p>
+      <div class="formula">Example: Red-Violet-Orange-Gold → 2,7 × 1kΩ = 27kΩ ±5%</div>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: What is tolerance in a resistor?</div><div class="a">A: It is the allowed variation from the rated resistance value, expressed as a percentage. Gold = ±5% means the actual value can be 5% above or below the marked value.</div></div>
+      <div class="qa"><div class="q">Q: Difference between active and passive components?</div><div class="a">A: Active components require an external power source to operate (e.g., transistors amplify signals). Passive components do not need power and cannot amplify — they only store or dissipate energy (e.g., resistors, capacitors).</div></div>
+      <div class="qa"><div class="q">Q: What does an oscilloscope measure?</div><div class="a">A: It displays voltage as a function of time, letting you see the shape, frequency, amplitude, and phase of a signal.</div></div>
+      <button class="ask-btn" onclick="sendPrompt('Explain resistor colour codes in detail with examples')">Ask Claude for more ↗</button>
+    </div>
+  </div>
+
+  <!-- Exp 2a KCL -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#E1F5EE;color:#085041;">2a</div>
+      <span class="exp-title">Kirchhoff's Current Law (KCL)</span>
+      <span class="exp-tag">Network Laws</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">KCL states: The sum of all currents entering a node equals the sum of all currents leaving it. Based on the <b>law of conservation of charge</b>.</p>
+      <div class="formula">ΣI_in = ΣI_out &nbsp;&nbsp; OR &nbsp;&nbsp; Σ I_k = 0 at any node</div>
+      <div class="tip">In your experiment: I₁ = I₂ + I₃. Verify this using ammeter readings at each branch.</div>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: State KCL.</div><div class="a">A: At any junction (node) in a circuit, the algebraic sum of all currents is zero — i.e., current entering equals current leaving.</div></div>
+      <div class="qa"><div class="q">Q: Why are ammeters connected in series?</div><div class="a">A: An ammeter must carry the full branch current to measure it. Series connection ensures all current flows through it. Its resistance is kept very low to avoid disturbing the circuit.</div></div>
+      <div class="qa"><div class="q">Q: What is Ohm's Law?</div><div class="a">A: V = IR. Voltage across a conductor equals current through it multiplied by its resistance, provided temperature is constant.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 2b KVL -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#E1F5EE;color:#085041;">2b</div>
+      <span class="exp-title">Kirchhoff's Voltage Law (KVL)</span>
+      <span class="exp-tag">Network Laws</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">KVL states: In any closed loop, the algebraic sum of all voltages (EMFs and voltage drops) is zero. Based on <b>law of conservation of energy</b>.</p>
+      <div class="formula">Σ V_k = 0 around any closed loop</div>
+      <div class="tip">In your experiment: Vs = V₁ + V₂ and V₂ = V₃ + V₄. Verify using voltmeter readings.</div>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: Why are voltmeters connected in parallel?</div><div class="a">A: A voltmeter measures the potential difference between two points, so it must be connected across (in parallel with) the component. Its resistance is kept very high so it draws almost no current.</div></div>
+      <div class="qa"><div class="q">Q: What is the difference between EMF and potential difference?</div><div class="a">A: EMF (electromotive force) is the energy supplied per unit charge by a source (like a battery). Potential difference is the energy consumed per unit charge across a component. EMF drives the circuit; PD is the drop across elements.</div></div>
+      <div class="qa"><div class="q">Q: What is Fleming's left hand rule?</div><div class="a">A: It gives the direction of force on a current-carrying conductor in a magnetic field. Thumb = Force/motion, Index = magnetic Field, Middle finger = Current direction.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 3 Thevenin -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#FAECE7;color:#712B13;">3</div>
+      <span class="exp-title">Thevenin's Theorem</span>
+      <span class="exp-tag">Network Theorems</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">Any linear circuit with sources can be replaced by a single voltage source (V_TH) in series with a single resistance (R_TH) from the load terminals' point of view.</p>
+      <div class="formula">I_L = V_TH / (R_TH + R_L)</div>
+      <div class="section-label">Steps</div>
+      <p class="a">1. Remove load R_L. &nbsp;2. Find open-circuit voltage → that is V_TH. &nbsp;3. Short all voltage sources, open all current sources, measure resistance at terminals → that is R_TH. &nbsp;4. Connect R_L and compute I_L using the formula.</p>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: What is a bilateral circuit?</div><div class="a">A: A circuit whose behaviour is the same regardless of the direction of current flow (e.g., resistors). A unilateral circuit behaves differently with current direction (e.g., diodes).</div></div>
+      <div class="qa"><div class="q">Q: What is the utility of Thevenin's theorem?</div><div class="a">A: It simplifies complex networks to a simple two-element circuit, making analysis easy when only the response at a specific load is needed — especially when the load changes.</div></div>
+      <div class="qa"><div class="q">Q: What is V_TH physically?</div><div class="a">A: It is the open-circuit voltage that appears across the terminals when the load is disconnected.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 4 Norton -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#FAECE7;color:#712B13;">4</div>
+      <span class="exp-title">Norton's Theorem</span>
+      <span class="exp-tag">Network Theorems</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">Norton's equivalent is a <b>current source (I_SC)</b> in parallel with R_N. It is the dual of Thevenin's theorem.</p>
+      <div class="formula">I_L = (R_N × I_SC) / (R_N + R_L)</div>
+      <div class="tip">Key relation: V_TH = I_SC × R_N. So Thevenin and Norton are interconvertible.</div>
+      <div class="section-label">Steps</div>
+      <p class="a">1. Remove R_L. &nbsp;2. Short the load terminals and find the current flowing → that is I_SC. &nbsp;3. R_N = R_TH (same method — short sources, open current sources). &nbsp;4. Reconnect R_L and use the formula.</p>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: How are Thevenin and Norton related?</div><div class="a">A: They are equivalent representations. V_TH = I_SC × R_TH. A Thevenin circuit can be converted to Norton by source transformation and vice versa.</div></div>
+      <div class="qa"><div class="q">Q: What is source transformation?</div><div class="a">A: Converting a voltage source in series with R to a current source (I = V/R) in parallel with the same R, or the reverse. The behaviour at the terminals remains identical.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 5 PN Diode -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#EAF3DE;color:#27500A;">5</div>
+      <span class="exp-title">V-I Characteristics of P-N Junction Diode</span>
+      <span class="exp-tag">Semiconductor</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">A P-N junction diode allows current in forward bias only. In <b>forward bias</b> (+ve to anode), current rises sharply after the cut-in voltage (~0.7V for Si). In <b>reverse bias</b>, only a tiny leakage current flows until breakdown.</p>
+      <div class="formula">I = I₀(e^(V/ηVT) − 1) &nbsp;|&nbsp; VT = 26mV at room temp</div>
+      <div class="section-label">Key values to remember</div>
+      <p class="a">Silicon cut-in voltage ≈ <b>0.7V</b>. Germanium cut-in voltage ≈ <b>0.3V</b>. η = 1 for Ge, 2 for Si.</p>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: How does a diode act as a switch?</div><div class="a">A: In forward bias → ON (short circuit, current flows). In reverse bias → OFF (open circuit, current blocked).</div></div>
+      <div class="qa"><div class="q">Q: What are trivalent and pentavalent impurities?</div><div class="a">A: Trivalent (Boron, Aluminium — 3 valence electrons) create holes → P-type semiconductor. Pentavalent (Phosphorus, Arsenic — 5 valence electrons) donate free electrons → N-type semiconductor.</div></div>
+      <div class="qa"><div class="q">Q: What is dynamic resistance of a diode?</div><div class="a">A: r_d = ΔV / ΔI = VT / I. It is the ratio of a small change in voltage to the corresponding change in current at the operating point.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 6 Zener -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#EAF3DE;color:#27500A;">6</div>
+      <span class="exp-title">Zener Diode Characteristics</span>
+      <span class="exp-tag">Semiconductor</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">A Zener diode is heavily doped and designed to work in <b>reverse breakdown</b> without damage. It maintains a constant voltage (Vz) across it once breakdown occurs — used for <b>voltage regulation</b>.</p>
+      <p class="a">Two breakdown mechanisms: <b>Zener breakdown</b> (strong electric field rips valence electrons, Vz &lt; 6V) and <b>Avalanche breakdown</b> (carrier multiplication by collision, Vz &gt; 6V).</p>
+      <div class="tip">For 1N4735A used in the experiment: Vz = 6.2V, power = 1W.</div>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: How is Zener diode different from a normal diode?</div><div class="a">A: It is more heavily doped, has a sharp and well-defined breakdown voltage, and is designed to operate continuously in reverse breakdown without damage — unlike a normal diode which gets destroyed.</div></div>
+      <div class="qa"><div class="q">Q: What is PIV of a Zener diode?</div><div class="a">A: Peak Inverse Voltage — the maximum reverse voltage a diode can withstand. For a Zener, it equals the breakdown voltage Vz.</div></div>
+      <div class="qa"><div class="q">Q: Can a Zener diode be used as a switch?</div><div class="a">A: Yes, but it is primarily used as a voltage regulator, not a switch. Its constant voltage in breakdown makes it ideal for reference voltage applications.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 7 Rectifier -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#FAEEDA;color:#633806;">7</div>
+      <span class="exp-title">Half Wave &amp; Full Wave Rectifiers</span>
+      <span class="exp-tag">Power Electronics</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">A rectifier converts AC to pulsating DC. <b>Half wave rectifier</b>: uses 1 diode, only one half of AC passes. <b>Full wave rectifier</b>: uses 2 diodes + centre tap, or 4 diodes (bridge) — both halves are utilised.</p>
+      <div class="section-label">Key formulas</div>
+      <div class="formula">Half wave: V_dc = V_m/π ≈ 0.318 V_m &nbsp;|&nbsp; Efficiency ≈ 40.6%</div>
+      <div class="formula">Full wave: V_dc = 2V_m/π ≈ 0.636 V_m &nbsp;|&nbsp; Efficiency ≈ 81.2%</div>
+      <div class="formula">Ripple factor (r) = V_ac(rms) / V_dc &nbsp;→ smaller r = smoother DC</div>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: Why is full wave rectifier preferred over half wave?</div><div class="a">A: Higher efficiency (81.2% vs 40.6%), lower ripple factor, and better DC output. It utilises both halves of the AC cycle.</div></div>
+      <div class="qa"><div class="q">Q: What is ripple factor?</div><div class="a">A: It is the ratio of the AC component (ripple) to the DC component in the output. Lower ripple = smoother (more pure) DC output.</div></div>
+      <div class="qa"><div class="q">Q: What does a capacitor filter do?</div><div class="a">A: It charges during the peak and discharges during the valley of the pulsating DC, smoothing out the ripples and giving a more steady DC output.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 8 BJT -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#EEEDFE;color:#3C3489;">8</div>
+      <span class="exp-title">BJT Common Emitter Characteristics</span>
+      <span class="exp-tag">Transistor</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">In CE configuration, input is between Base-Emitter and output is between Collector-Emitter. The <b>input characteristics</b> plot I_B vs V_BE (like a diode curve). The <b>output characteristics</b> plot I_C vs V_CE for different fixed I_B values.</p>
+      <div class="formula">β (current gain) = I_C / I_B &nbsp;|&nbsp; I_C = β × I_B</div>
+      <div class="tip">Three regions: Active (amplification, I_B controls I_C), Saturation (both junctions forward biased, used in switching ON), Cutoff (transistor OFF, no current).</div>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: Why is CE configuration preferred for amplification?</div><div class="a">A: It gives high current gain (β), high voltage gain, and high power gain compared to CB or CC configurations. It is the most widely used configuration.</div></div>
+      <div class="qa"><div class="q">Q: What is the range of β for a BJT?</div><div class="a">A: Typically 20 to 500, depending on the transistor. For BC107 used in the experiment, β is around 100-300.</div></div>
+      <div class="qa"><div class="q">Q: Can a transistor be replaced by two back-to-back diodes?</div><div class="a">A: No. A transistor has a very thin base that allows minority carrier injection and controlled amplification. Two diodes back-to-back cannot replicate transistor action — the carrier interaction between junctions is absent.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 9 LDR -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#EEEDFE;color:#3C3489;">9</div>
+      <span class="exp-title">LDR and Photodiode Light Detection</span>
+      <span class="exp-tag">Sensors</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">An <b>LDR (Light Dependent Resistor)</b> has very high resistance in darkness and very low resistance in bright light. Light photons excite electrons from valence to conduction band, reducing resistance. Used in automatic street lights, burglar alarms, etc.</p>
+      <div class="formula">R_LDR = R_dark × L^(-b) &nbsp;→ Log R_LDR = Log R_dark − b × Log L</div>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: How does an LDR work?</div><div class="a">A: When light falls on the LDR, photons excite electrons into the conduction band. More electrons = lower resistance = more current. In darkness, resistance is very high (MΩ range).</div></div>
+      <div class="qa"><div class="q">Q: What is the difference between an LDR and a photodiode?</div><div class="a">A: LDR changes its resistance with light intensity (passive, no PN junction). A photodiode is a reverse-biased PN junction that generates photocurrent when light falls on it — faster response, more sensitive, used in high-speed applications.</div></div>
+      <div class="qa"><div class="q">Q: What is a practical application of an LDR circuit?</div><div class="a">A: Automatic street lights (turn on at night, off in day), camera exposure control, burglar alarms, and solar trackers.</div></div>
+    </div>
+  </div>
+
+  <!-- Exp 10 Temperature Sensor -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#FAEEDA;color:#633806;">10</div>
+      <span class="exp-title">Temperature Sensor (LM35) with Arduino</span>
+      <span class="exp-tag">Arduino / IoT</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Core concept</div>
+      <p class="a">The <b>LM35</b> is a precision temperature sensor with output linearly proportional to temperature: 10mV per °C. Connected to Arduino's analog pin, the ADC converts the analog voltage to a digital value for real-time display.</p>
+      <div class="formula">Temperature (°C) = (ADC reading × 5V / 1023) / 0.01V</div>
+      <div class="section-label">LM35 pin connections</div>
+      <p class="a">Pin 1 → +5V (VCC) &nbsp;|&nbsp; Pin 2 → Analog pin A0 of Arduino &nbsp;|&nbsp; Pin 3 → GND</p>
+      <div class="section-label">Likely viva questions</div>
+      <div class="qa"><div class="q">Q: What is the sensitivity of LM35?</div><div class="a">A: 10mV per degree Celsius. So at 25°C it gives 250mV output.</div></div>
+      <div class="qa"><div class="q">Q: What is an RTD?</div><div class="a">A: Resistance Temperature Detector — a sensor whose resistance changes predictably with temperature. More accurate than thermocouples over moderate temperature ranges.</div></div>
+      <div class="qa"><div class="q">Q: What does ADC mean in Arduino?</div><div class="a">A: Analog to Digital Converter. Arduino has a 10-bit ADC, so it gives values from 0 to 1023 corresponding to 0V to 5V input. Used to read analog sensor outputs.</div></div>
+    </div>
+  </div>
+
+  <!-- Beyond syllabus -->
+  <div class="exp-card">
+    <div class="exp-header" onclick="toggle(this)">
+      <div class="exp-num" style="background:#FCEBEB;color:#791F1F;">★</div>
+      <span class="exp-title">Op-Amp configurations (IC741)</span>
+      <span class="exp-tag">Beyond syllabus</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="exp-body">
+      <div class="section-label">Three configurations</div>
+      <div class="qa"><div class="q">Inverting amplifier</div><div class="a">Input at (−) terminal. Output is inverted. Gain A_v = −R_F / R₁ (negative = 180° phase shift).</div></div>
+      <div class="qa"><div class="q">Non-inverting amplifier</div><div class="a">Input at (+) terminal. Output is in phase. Gain A_v = 1 + R_F / R₁ (always ≥ 1).</div></div>
+      <div class="qa"><div class="q">Voltage follower (buffer)</div><div class="a">Output connected directly to (−) input. Gain = 1 (unity). Very high input impedance, very low output impedance — used for impedance matching.</div></div>
+      <div class="section-label">Key viva question</div>
+      <div class="qa"><div class="q">Q: What is virtual ground?</div><div class="a">A: In an inverting amplifier, the (−) input is at 0V (same as ground) even though it is not physically connected to ground. This happens due to the very high open-loop gain and negative feedback, which forces V₊ ≈ V₋ ≈ 0V.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.exp-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.chevron').forEach(c => c.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); chevron.classList.add('open'); }
+}
+</script>
